@@ -16,10 +16,10 @@ export function Select({ label, options, className, id, ...props }: SelectProps)
       <select
         id={id}
         className={cn(
-          'bg-gruvbox-bg border border-gruvbox-border rounded-lg px-3 py-2',
+          'bg-gruvbox-bg border border-gruvbox-border rounded-lg px-2 py-2',
           'text-sm text-gruvbox-text font-mono',
           'focus:outline-none focus:border-gruvbox-orange transition-colors',
-          'cursor-pointer',
+          'cursor-pointer min-w-0 w-full',
           className,
         )}
         {...props}

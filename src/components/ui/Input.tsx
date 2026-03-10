@@ -6,6 +6,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 export function Input({ label, error, className, id, ...props }: InputProps) {
+  const isNumber = props.type === 'number'
   return (
     <div className="flex flex-col gap-1">
       {label && (
@@ -19,6 +20,7 @@ export function Input({ label, error, className, id, ...props }: InputProps) {
           'bg-gruvbox-bg border border-gruvbox-border rounded-lg px-3 py-2',
           'text-sm text-gruvbox-text font-mono placeholder:text-gruvbox-border',
           'focus:outline-none focus:border-gruvbox-orange transition-colors',
+          isNumber && 'text-center px-2',
           error && 'border-gruvbox-red',
           className,
         )}
