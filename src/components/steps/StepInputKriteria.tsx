@@ -15,6 +15,12 @@ const TIPE_OPTIONS = [
   { value: 'cost', label: 'Cost (↓)' },
 ]
 
+const FORMULA_LEGEND = [
+  { symbol: 'Wj', description: 'bobot ternormalisasi kriteria j' },
+  { symbol: 'wj', description: 'bobot asli kriteria j' },
+  { symbol: 'Σwj', description: 'jumlah semua bobot' },
+]
+
 export function StepInputKriteria() {
   const storeKriteria = useWPMStore((s) => s.kriteria)
   const setKriteria = useWPMStore((s) => s.setKriteria)
@@ -51,50 +57,61 @@ export function StepInputKriteria() {
       title="1. Input Kriteria & Bobot"
       description="Tentukan kriteria penilaian, bobot kepentingan, dan tipe kriteria."
     >
-      <FormulaBlock className="mb-5">
-        {'Bobot ternormalisasi: Wj = wj / Σwj'}
-      </FormulaBlock>
+      <FormulaBlock
+        formula="Wj = wj / Σwj"
+        legend={FORMULA_LEGEND}
+        className="mb-5"
+      />
 
-      <div className="flex flex-col gap-3 mb-4">
+      <div className="flex flex-col gap-2 mb-4">
+        {/* header row — hidden on mobile, shown on sm+ */}
+        <div className="hidden sm:grid grid-cols-[1fr_60px_110px_24px] gap-2 px-1">
+          <span className="text-xs font-mono text-gruvbox-muted">Nama Kriteria</span>
+          <span className="text-xs font-mono text-gruvbox-muted">Bobot</span>
+          <span className="text-xs font-mono text-gruvbox-muted">Tipe</span>
+          <span />
+        </div>
+
         {kriteria.map((k, i) => (
-          <div
-            key={k.id}
-            className="grid grid-cols-[1fr_auto_auto_auto] gap-2 items-end"
-          >
+          <div key={k.id} className="flex flex-col sm:grid sm:grid-cols-[1fr_60px_110px_24px] gap-2 sm:items-center bg-gruvbox-raised/30 sm:bg-transparent rounded-lg sm:rounded-none p-2 sm:p-0">
+            {/* mobile-only label */}
+            <span className="sm:hidden text-[10px] font-mono text-gruvbox-muted uppercase tracking-wider">
+              Kriteria {i + 1}
+            </span>
             <Input
-              label={i === 0 ? 'Nama Kriteria' : undefined}
               placeholder={`Kriteria ${i + 1}`}
               value={k.nama}
               onChange={(e) => updateKriteria(k.id, 'nama', e.target.value)}
             />
-            <Input
-              label={i === 0 ? 'Bobot' : undefined}
-              type="number"
-              min={1}
-              max={10}
-              value={k.bobot}
-              className="w-16"
-              onChange={(e) => updateKriteria(k.id, 'bobot', Number(e.target.value))}
-            />
-            <Select
-              label={i === 0 ? 'Tipe' : undefined}
-              options={TIPE_OPTIONS}
-              value={k.tipe}
-              onChange={(e) => updateKriteria(k.id, 'tipe', e.target.value)}
-            />
-            <button
-              onClick={() => removeKriteria(k.id)}
-              disabled={kriteria.length <= MIN_KRITERIA}
-              className="mb-0.5 text-gruvbox-muted hover:text-gruvbox-red disabled:opacity-30 transition-colors text-lg leading-none"
-              aria-label="Hapus kriteria"
-            >
-              ×
-            </button>
+            <div className="flex gap-2 sm:contents">
+              <Input
+                type="number"
+                min={1}
+                max={10}
+                value={k.bobot}
+                className="w-14 sm:w-full"
+                onChange={(e) => updateKriteria(k.id, 'bobot', Number(e.target.value))}
+              />
+              <Select
+                options={TIPE_OPTIONS}
+                value={k.tipe}
+                className="flex-1 sm:flex-none"
+                onChange={(e) => updateKriteria(k.id, 'tipe', e.target.value)}
+              />
+              <button
+                onClick={() => removeKriteria(k.id)}
+                disabled={kriteria.length <= MIN_KRITERIA}
+                className="text-gruvbox-muted hover:text-gruvbox-red disabled:opacity-30 transition-colors text-xl leading-none self-center"
+                aria-label="Hapus kriteria"
+              >
+                ×
+              </button>
+            </div>
           </div>
         ))}
       </div>
 
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-3">
         <div className="flex items-center gap-3">
           <Button
             variant="outline"
@@ -104,7 +121,7 @@ export function StepInputKriteria() {
           >
             + Tambah Kriteria
           </Button>
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1">
             {kriteria.map((k) => (
               <Badge key={k.id} variant={k.tipe}>
                 {k.tipe === 'benefit' ? '↑' : '↓'}
@@ -112,7 +129,7 @@ export function StepInputKriteria() {
             ))}
           </div>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center justify-between sm:justify-end gap-3">
           <span className="text-xs font-mono text-gruvbox-muted">
             Σw = <span className="text-gruvbox-yellow">{totalBobot}</span>
           </span>
