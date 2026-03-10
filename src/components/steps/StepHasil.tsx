@@ -2,7 +2,7 @@ import { useWPM } from '@/hooks/useWPM'
 import { useStepProgress } from '@/hooks/useStepProgress'
 import { StepCard } from '@/components/shared/StepCard'
 import { Button } from '@/components/ui/Button'
-import { formatDecimal } from '@/utils/wpm'
+import { fmtFinal } from '@/utils/wpm'
 import { cn } from '@/lib/utils'
 import { useWPMStore } from '@/stores/wpmStore'
 
@@ -28,7 +28,7 @@ export function StepHasil() {
           <div>
             <p className="text-gruvbox-text font-semibold text-lg">{winnerNama}</p>
             <p className="text-gruvbox-orange font-mono text-sm">
-              V = {formatDecimal(winner?.nilai ?? 0)}
+              V = {fmtFinal(winner?.nilai ?? 0)}
             </p>
           </div>
         </div>
@@ -69,7 +69,7 @@ export function StepHasil() {
                 </div>
               </div>
               <span className="text-xs font-mono text-gruvbox-yellow w-16 text-right">
-                {formatDecimal(v.nilai)}
+                {fmtFinal(v.nilai)}
               </span>
             </div>
           )

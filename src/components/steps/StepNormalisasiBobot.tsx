@@ -5,7 +5,7 @@ import { FormulaBlock } from '@/components/shared/FormulaBlock'
 import { DataTable } from '@/components/shared/DataTable'
 import { Badge } from '@/components/shared/Badge'
 import { Button } from '@/components/ui/Button'
-import { formatDecimal } from '@/utils/wpm'
+import { formatDecimal, fmt3 } from '@/utils/wpm'
 
 const FORMULA_LEGEND = [
   { symbol: 'Wj', symbolLatex: 'W_j', description: 'bobot ternormalisasi kriteria j' },
@@ -25,7 +25,7 @@ export function StepNormalisasiBobot() {
     <Badge key={k.id} variant={k.tipe}>{k.tipe}</Badge>,
     String(k.bobot),
     <span key={k.id} className="text-gruvbox-yellow font-mono">
-      {formatDecimal(bobotNormal[k.id] ?? 0)}
+      {fmt3(bobotNormal[k.id] ?? 0)}
     </span>,
   ])
 
@@ -33,7 +33,7 @@ export function StepNormalisasiBobot() {
     <span key="sum" className="text-gruvbox-muted">Σ</span>,
     '',
     <span key="tw" className="text-gruvbox-orange font-semibold">{totalBobot}</span>,
-    <span key="tw1" className="text-gruvbox-green font-semibold">1.0000</span>,
+    <span key="tw1" className="text-gruvbox-green font-semibold">1.000</span>,
   ]
 
   return (

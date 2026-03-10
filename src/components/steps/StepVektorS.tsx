@@ -4,7 +4,7 @@ import { StepCard } from '@/components/shared/StepCard'
 import { FormulaBlock } from '@/components/shared/FormulaBlock'
 import { DataTable } from '@/components/shared/DataTable'
 import { Button } from '@/components/ui/Button'
-import { formatDecimal } from '@/utils/wpm'
+import { fmt3, fmtFinal } from '@/utils/wpm'
 
 const FORMULA_LEGEND = [
   { symbol: 'Si', symbolLatex: 'S_i', description: 'nilai vektor S alternatif i' },
@@ -34,7 +34,7 @@ export function StepVektorS() {
       return (
         <span key={k.id} className="font-mono text-xs text-gruvbox-muted">
           {xij}
-          <sup className="text-gruvbox-orange">{formatDecimal(exp, 3)}</sup>
+          <sup className="text-gruvbox-orange">{fmt3(exp)}</sup>
         </span>
       )
     })
@@ -42,7 +42,7 @@ export function StepVektorS() {
       alt.nama,
       ...termCells,
       <span key="si" className="text-gruvbox-yellow font-semibold font-mono">
-        {formatDecimal(sVal)}
+        {fmtFinal(sVal)}
       </span>,
     ]
   })

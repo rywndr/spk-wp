@@ -4,7 +4,7 @@ import { StepCard } from '@/components/shared/StepCard'
 import { FormulaBlock } from '@/components/shared/FormulaBlock'
 import { DataTable } from '@/components/shared/DataTable'
 import { Button } from '@/components/ui/Button'
-import { formatDecimal } from '@/utils/wpm'
+import { fmt3, fmtFinal } from '@/utils/wpm'
 
 const FORMULA_LEGEND = [
   { symbol: 'Vi', symbolLatex: 'V_i', description: 'nilai preferensi relatif alternatif i' },
@@ -24,10 +24,10 @@ export function StepVektorV() {
     const altNama = alternatif.find((a) => a.id === v.alternatifId)?.nama ?? v.alternatifId
     return [
       altNama,
-      <span key="si" className="font-mono text-gruvbox-muted">{formatDecimal(si)}</span>,
-      <span key="ts" className="font-mono text-gruvbox-muted">{formatDecimal(totalS)}</span>,
+      <span key="si" className="font-mono text-gruvbox-muted">{fmt3(si)}</span>,
+      <span key="ts" className="font-mono text-gruvbox-muted">{fmt3(totalS)}</span>,
       <span key="vi" className="text-gruvbox-yellow font-semibold font-mono">
-        {formatDecimal(v.nilai)}
+        {fmtFinal(v.nilai)}
       </span>,
     ]
   })
@@ -38,7 +38,7 @@ export function StepVektorV() {
       description="Hitung nilai preferensi relatif setiap alternatif terhadap total."
     >
       <FormulaBlock
-        latex={`V_i = \\dfrac{S_i}{\\sum_{i=1}^{m} S_i} \\quad (\\textstyle\\sum S_i = ${formatDecimal(totalS)})`}
+        latex={`V_i = \\dfrac{S_i}{\\sum_{i=1}^{m} S_i} \\quad (\\textstyle\\sum S_i = ${fmt3(totalS)})`}
         legend={FORMULA_LEGEND}
         className="mb-5"
       />

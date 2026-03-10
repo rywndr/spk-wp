@@ -59,3 +59,13 @@ export function buildNilaiTernormalisasi(
 export function formatDecimal(n: number, digits = 4): string {
   return n.toFixed(digits)
 }
+
+// intermediate values: 3 decimal places
+export function fmt3(n: number): string {
+  return n.toFixed(3)
+}
+
+// final result values: rounded to nearest whole number
+export function fmtFinal(n: number): string {
+  return Math.round(n).toString()
+}
