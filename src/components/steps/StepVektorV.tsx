@@ -7,9 +7,9 @@ import { Button } from '@/components/ui/Button'
 import { formatDecimal } from '@/utils/wpm'
 
 const FORMULA_LEGEND = [
-  { symbol: 'Vi', description: 'nilai preferensi relatif alternatif i' },
-  { symbol: 'Si', description: 'nilai vektor S alternatif i' },
-  { symbol: 'Σ Si', description: 'jumlah seluruh nilai vektor S' },
+  { symbol: 'Vi', symbolLatex: 'V_i', description: 'nilai preferensi relatif alternatif i' },
+  { symbol: 'Si', symbolLatex: 'S_i', description: 'nilai vektor S alternatif i' },
+  { symbol: 'SSi', symbolLatex: '\\sum S_i', description: 'jumlah seluruh nilai vektor S' },
 ]
 
 export function StepVektorV() {
@@ -38,7 +38,7 @@ export function StepVektorV() {
       description="Hitung nilai preferensi relatif setiap alternatif terhadap total."
     >
       <FormulaBlock
-        formula={`Vi = Si / Σ Si    (Σ Si = ${formatDecimal(totalS)})`}
+        latex={`V_i = \\dfrac{S_i}{\\sum_{i=1}^{m} S_i} \\quad (\\textstyle\\sum S_i = ${formatDecimal(totalS)})`}
         legend={FORMULA_LEGEND}
         className="mb-5"
       />

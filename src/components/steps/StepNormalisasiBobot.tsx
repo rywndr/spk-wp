@@ -8,9 +8,9 @@ import { Button } from '@/components/ui/Button'
 import { formatDecimal } from '@/utils/wpm'
 
 const FORMULA_LEGEND = [
-  { symbol: 'Wj', description: 'bobot ternormalisasi kriteria j' },
-  { symbol: 'wj', description: 'bobot asli kriteria j' },
-  { symbol: 'Σwj', description: 'jumlah semua bobot asli' },
+  { symbol: 'Wj', symbolLatex: 'W_j', description: 'bobot ternormalisasi kriteria j' },
+  { symbol: 'wj', symbolLatex: 'w_j', description: 'bobot asli kriteria j' },
+  { symbol: 'Swj', symbolLatex: '\\sum w_j', description: 'jumlah semua bobot asli' },
 ]
 
 export function StepNormalisasiBobot() {
@@ -42,7 +42,7 @@ export function StepNormalisasiBobot() {
       description="Hitung bobot ternormalisasi agar total bobot sama dengan 1."
     >
       <FormulaBlock
-        formula={`Wj = wj / Σwj    (Σwj = ${totalBobot})`}
+        latex={`W_j = \\dfrac{w_j}{\\sum w_j} \\quad (\\sum w_j = ${totalBobot})`}
         legend={FORMULA_LEGEND}
         className="mb-5"
       />

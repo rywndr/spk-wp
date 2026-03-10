@@ -7,12 +7,12 @@ import { Button } from '@/components/ui/Button'
 import { formatDecimal } from '@/utils/wpm'
 
 const FORMULA_LEGEND = [
-  { symbol: 'Si', description: 'nilai vektor S alternatif i' },
-  { symbol: 'Π', description: 'perkalian berurutan semua kriteria j' },
-  { symbol: 'Xij', description: 'nilai alternatif i pada kriteria j' },
-  { symbol: 'Wj', description: 'bobot ternormalisasi kriteria j' },
-  { symbol: '+Wj', description: 'eksponen positif untuk kriteria benefit' },
-  { symbol: '-Wj', description: 'eksponen negatif untuk kriteria cost' },
+  { symbol: 'Si', symbolLatex: 'S_i', description: 'nilai vektor S alternatif i' },
+  { symbol: 'Prod', symbolLatex: '\\prod', description: 'perkalian berurutan semua kriteria j' },
+  { symbol: 'Xij', symbolLatex: 'X_{ij}', description: 'nilai alternatif i pada kriteria j' },
+  { symbol: 'Wj', symbolLatex: 'W_j', description: 'bobot ternormalisasi kriteria j' },
+  { symbol: '+Wj', symbolLatex: '+W_j', description: 'eksponen positif untuk kriteria benefit' },
+  { symbol: '-Wj', symbolLatex: '-W_j', description: 'eksponen negatif untuk kriteria cost' },
 ]
 
 export function StepVektorS() {
@@ -53,7 +53,7 @@ export function StepVektorS() {
       description="Hitung nilai vektor S untuk setiap alternatif menggunakan perkalian berbobot."
     >
       <FormulaBlock
-        formula="Si = Π (Xij ^ Wj)    [benefit: +Wj, cost: -Wj]"
+        latex="S_i = \prod_{j=1}^{n} X_{ij}^{\,W_j} \quad \text{(benefit: } {+W_j} \text{, cost: } {-W_j}\text{)}"
         legend={FORMULA_LEGEND}
         className="mb-5"
       />

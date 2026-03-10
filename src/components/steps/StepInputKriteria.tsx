@@ -11,14 +11,14 @@ import type { Criterion } from '@/types'
 import { MAX_KRITERIA, MIN_KRITERIA } from '@/constants'
 
 const TIPE_OPTIONS = [
-  { value: 'benefit', label: 'Benefit (↑)' },
-  { value: 'cost', label: 'Cost (↓)' },
+  { value: 'benefit', label: 'Benefit ↑' },
+  { value: 'cost', label: 'Cost ↓' },
 ]
 
 const FORMULA_LEGEND = [
-  { symbol: 'Wj', description: 'bobot ternormalisasi kriteria j' },
-  { symbol: 'wj', description: 'bobot asli kriteria j' },
-  { symbol: 'Σwj', description: 'jumlah semua bobot' },
+  { symbol: 'Wj', symbolLatex: 'W_j', description: 'bobot ternormalisasi kriteria j' },
+  { symbol: 'wj', symbolLatex: 'w_j', description: 'bobot asli kriteria j' },
+  { symbol: 'Swj', symbolLatex: '\\sum w_j', description: 'jumlah semua bobot' },
 ]
 
 export function StepInputKriteria() {
@@ -58,14 +58,14 @@ export function StepInputKriteria() {
       description="Tentukan kriteria penilaian, bobot kepentingan, dan tipe kriteria."
     >
       <FormulaBlock
-        formula="Wj = wj / Σwj"
+        latex="W_j = \dfrac{w_j}{\sum_{j=1}^{n} w_j}"
         legend={FORMULA_LEGEND}
         className="mb-5"
       />
 
       <div className="flex flex-col gap-2 mb-4">
         {/* header row — hidden on mobile, shown on sm+ */}
-        <div className="hidden sm:grid grid-cols-[1fr_60px_110px_24px] gap-2 px-1">
+        <div className="hidden sm:grid grid-cols-[1fr_56px_100px_24px] gap-2 px-1">
           <span className="text-xs font-mono text-gruvbox-muted">Nama Kriteria</span>
           <span className="text-xs font-mono text-gruvbox-muted">Bobot</span>
           <span className="text-xs font-mono text-gruvbox-muted">Tipe</span>
@@ -73,7 +73,7 @@ export function StepInputKriteria() {
         </div>
 
         {kriteria.map((k, i) => (
-          <div key={k.id} className="flex flex-col sm:grid sm:grid-cols-[1fr_60px_110px_24px] gap-2 sm:items-center bg-gruvbox-raised/30 sm:bg-transparent rounded-lg sm:rounded-none p-2 sm:p-0">
+          <div key={k.id} className="flex flex-col sm:grid sm:grid-cols-[1fr_56px_100px_24px] gap-2 sm:items-center bg-gruvbox-raised/30 sm:bg-transparent rounded-lg sm:rounded-none p-2 sm:p-0">
             {/* mobile-only label */}
             <span className="sm:hidden text-[10px] font-mono text-gruvbox-muted uppercase tracking-wider">
               Kriteria {i + 1}
