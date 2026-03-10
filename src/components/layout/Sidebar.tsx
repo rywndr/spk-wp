@@ -37,34 +37,46 @@ export function Sidebar() {
 export function MobileProgressBar() {
   const { steps, currentStep, completedSteps } = useStepProgress()
 
+  const activeStep = steps.find((s) => s.id === currentStep)
+
   return (
-    <div className="flex md:hidden w-full bg-gruvbox-surface border-b border-gruvbox-border px-4 py-2 gap-1.5 overflow-x-auto">
-      {steps.map((step, i) => {
-        const isActive = currentStep === step.id
-        const isDone = completedSteps.has(step.id)
-        return (
-          <div key={step.id} className="flex items-center gap-1.5 flex-shrink-0">
-            <div
-              className={cn(
-                'w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-mono font-bold transition-all',
-                isActive && 'bg-gruvbox-orange text-gruvbox-bg',
-                isDone && !isActive && 'bg-gruvbox-green text-gruvbox-bg',
-                !isActive && !isDone && 'bg-gruvbox-raised border border-gruvbox-border text-gruvbox-muted',
-              )}
-            >
-              {isDone && !isActive ? '✓' : i + 1}
-            </div>
-            {i < steps.length - 1 && (
+    <div className="flex md:hidden flex-col w-full bg-gruvbox-surface border-b border-gruvbox-border px-4 pt-2 pb-2.5 gap-2">
+      {/* dot row */}
+      <div className="flex items-center gap-1 overflow-x-auto">
+        {steps.map((step, i) => {
+          const isActive = currentStep === step.id
+          const isDone = completedSteps.has(step.id)
+          return (
+            <div key={step.id} className="flex items-center gap-1 flex-shrink-0">
               <div
                 className={cn(
-                  'w-4 h-px',
-                  isDone ? 'bg-gruvbox-green' : 'bg-gruvbox-border',
+                  'w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-mono font-bold transition-all',
+                  isActive && 'bg-gruvbox-orange text-gruvbox-bg',
+                  isDone && !isActive && 'bg-gruvbox-green text-gruvbox-bg',
+                  !isActive && !isDone && 'bg-gruvbox-raised border border-gruvbox-border text-gruvbox-muted',
                 )}
-              />
-            )}
-          </div>
-        )
-      })}
+              >
+                {isDone && !isActive ? '✓' : i + 1}
+              </div>
+              {i < steps.length - 1 && (
+                <div
+                  className={cn(
+                    'w-3 h-px',
+                    isDone ? 'bg-gruvbox-green' : 'bg-gruvbox-border',
+                  )}
+                />
+              )}
+            </div>
+          )
+        })}
+      </div>
+      {/* active step label */}
+      {activeStep && (
+        <p className="text-xs font-mono text-gruvbox-orange leading-tight">
+          {activeStep.label}
+          <span className="text-gruvbox-muted"> — {activeStep.description}</span>
+        </p>
+      )}
     </div>
   )
 }
