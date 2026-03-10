@@ -60,12 +60,12 @@ export function formatDecimal(n: number, digits = 4): string {
   return n.toFixed(digits)
 }
 
-// intermediate values: 3 decimal places
+// intermediate values capped at 3 decimal places
 export function fmt3(n: number): string {
   return n.toFixed(3)
 }
 
-// final result values: rounded to nearest whole number
+// final result values: 4 decimal places for full precision
 export function fmtFinal(n: number): string {
-  return Math.round(n).toString()
+  return n.toFixed(4)
 }
