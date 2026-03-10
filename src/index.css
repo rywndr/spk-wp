@@ -67,3 +67,23 @@ input[type='number'] {
   -moz-appearance: textfield;
   appearance: textfield;
 }
+
+/* KaTeX theme overrides — force gruvbox colors on rendered math */
+.katex-display-block .katex,
+.katex-display-block .katex-display {
+  color: #fabd2f; /* gruvbox-yellow for display formulas */
+  text-align: center;
+  margin: 0;
+}
+
+.katex-inline-symbol .katex {
+  color: #e6a050; /* gruvbox-orange for legend symbols */
+  font-size: 0.8rem;
+}
+
+/* prevent KaTeX from adding its own scroll container margin */
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 2px 0;
+}
