@@ -7,6 +7,12 @@ import { Badge } from '@/components/shared/Badge'
 import { Button } from '@/components/ui/Button'
 import { formatDecimal } from '@/utils/wpm'
 
+const FORMULA_LEGEND = [
+  { symbol: 'Wj', description: 'bobot ternormalisasi kriteria j' },
+  { symbol: 'wj', description: 'bobot asli kriteria j' },
+  { symbol: 'Σwj', description: 'jumlah semua bobot asli' },
+]
+
 export function StepNormalisasiBobot() {
   const { kriteria, bobotNormal } = useWPM()
   const { goNext, goPrev } = useStepProgress()
@@ -35,9 +41,11 @@ export function StepNormalisasiBobot() {
       title="3. Normalisasi Bobot"
       description="Hitung bobot ternormalisasi agar total bobot sama dengan 1."
     >
-      <FormulaBlock className="mb-5">
-        {'Wj = wj / Σwj    (Σ semua bobot = ' + totalBobot + ')'}
-      </FormulaBlock>
+      <FormulaBlock
+        formula={`Wj = wj / Σwj    (Σwj = ${totalBobot})`}
+        legend={FORMULA_LEGEND}
+        className="mb-5"
+      />
 
       <DataTable headers={headers} rows={[...rows, sumRow]} highlightCol={3} className="mb-5" />
 

@@ -6,6 +6,12 @@ import { DataTable } from '@/components/shared/DataTable'
 import { Button } from '@/components/ui/Button'
 import { formatDecimal } from '@/utils/wpm'
 
+const FORMULA_LEGEND = [
+  { symbol: 'Vi', description: 'nilai preferensi relatif alternatif i' },
+  { symbol: 'Si', description: 'nilai vektor S alternatif i' },
+  { symbol: 'Σ Si', description: 'jumlah seluruh nilai vektor S' },
+]
+
 export function StepVektorV() {
   const { alternatif, vektorS, vektorV } = useWPM()
   const { goNext, goPrev } = useStepProgress()
@@ -31,9 +37,11 @@ export function StepVektorV() {
       title="5. Hitung Vektor V"
       description="Hitung nilai preferensi relatif setiap alternatif terhadap total."
     >
-      <FormulaBlock className="mb-5">
-        {'Vi = Si / Σ Si    (Σ Si = ' + formatDecimal(totalS) + ')'}
-      </FormulaBlock>
+      <FormulaBlock
+        formula={`Vi = Si / Σ Si    (Σ Si = ${formatDecimal(totalS)})`}
+        legend={FORMULA_LEGEND}
+        className="mb-5"
+      />
 
       <DataTable headers={headers} rows={rows} highlightCol={3} className="mb-5" />
 

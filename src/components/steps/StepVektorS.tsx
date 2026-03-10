@@ -6,6 +6,15 @@ import { DataTable } from '@/components/shared/DataTable'
 import { Button } from '@/components/ui/Button'
 import { formatDecimal } from '@/utils/wpm'
 
+const FORMULA_LEGEND = [
+  { symbol: 'Si', description: 'nilai vektor S alternatif i' },
+  { symbol: 'Π', description: 'perkalian berurutan semua kriteria j' },
+  { symbol: 'Xij', description: 'nilai alternatif i pada kriteria j' },
+  { symbol: 'Wj', description: 'bobot ternormalisasi kriteria j' },
+  { symbol: '+Wj', description: 'eksponen positif untuk kriteria benefit' },
+  { symbol: '-Wj', description: 'eksponen negatif untuk kriteria cost' },
+]
+
 export function StepVektorS() {
   const { kriteria, alternatif, bobotNormal, vektorS } = useWPM()
   const { goNext, goPrev } = useStepProgress()
@@ -43,9 +52,11 @@ export function StepVektorS() {
       title="4. Hitung Vektor S"
       description="Hitung nilai vektor S untuk setiap alternatif menggunakan perkalian berbobot."
     >
-      <FormulaBlock className="mb-5">
-        {'Si = Π (Xij ^ Wj)    [benefit: +Wj, cost: -Wj]'}
-      </FormulaBlock>
+      <FormulaBlock
+        formula="Si = Π (Xij ^ Wj)    [benefit: +Wj, cost: -Wj]"
+        legend={FORMULA_LEGEND}
+        className="mb-5"
+      />
 
       <DataTable headers={headers} rows={rows} highlightCol={headers.length - 1} className="mb-5" />
 
