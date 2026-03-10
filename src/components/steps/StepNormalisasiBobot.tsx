@@ -5,7 +5,7 @@ import { FormulaBlock } from '@/components/shared/FormulaBlock'
 import { DataTable } from '@/components/shared/DataTable'
 import { Badge } from '@/components/shared/Badge'
 import { Button } from '@/components/ui/Button'
-import { formatDecimal, fmt3 } from '@/utils/wpm'
+import { fmt3 } from '@/utils/wpm'
 
 const FORMULA_LEGEND = [
   { symbol: 'Wj', symbolLatex: 'W_j', description: 'bobot ternormalisasi kriteria j' },
