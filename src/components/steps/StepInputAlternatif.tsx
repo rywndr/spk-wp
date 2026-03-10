@@ -58,7 +58,8 @@ export function StepInputAlternatif() {
       title="2. Input Alternatif"
       description="Masukkan nama alternatif dan nilai untuk setiap kriteria."
     >
-      <div className="overflow-x-auto mb-4">
+      {/* desktop: scrollable table */}
+      <div className="hidden sm:block overflow-x-auto mb-4">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-gruvbox-border">
@@ -91,7 +92,7 @@ export function StepInputAlternatif() {
                       min={1}
                       value={a.nilai[k.id] ?? 1}
                       onChange={(e) => updateNilai(a.id, k.id, Number(e.target.value))}
-                      className="w-16"
+                      className="w-14"
                     />
                   </td>
                 ))}
@@ -99,7 +100,7 @@ export function StepInputAlternatif() {
                   <button
                     onClick={() => removeAlternatif(a.id)}
                     disabled={alternatif.length <= MIN_ALTERNATIF}
-                    className="text-gruvbox-muted hover:text-gruvbox-red disabled:opacity-30 transition-colors text-lg leading-none"
+                    className="text-gruvbox-muted hover:text-gruvbox-red disabled:opacity-30 transition-colors text-xl leading-none"
                   >
                     ×
                   </button>
@@ -110,11 +111,49 @@ export function StepInputAlternatif() {
         </table>
       </div>
 
-      <div className="flex items-center justify-between">
+      {/* mobile: card stack per alternatif */}
+      <div className="flex sm:hidden flex-col gap-3 mb-4">
+        {alternatif.map((a, i) => (
+          <div key={a.id} className="bg-gruvbox-raised/30 rounded-lg p-3 flex flex-col gap-2">
+            <div className="flex items-center justify-between">
+              <Input
+                placeholder={`Alternatif ${i + 1}`}
+                value={a.nama}
+                onChange={(e) => updateNama(a.id, e.target.value)}
+                className="flex-1 mr-2"
+              />
+              <button
+                onClick={() => removeAlternatif(a.id)}
+                disabled={alternatif.length <= MIN_ALTERNATIF}
+                className="text-gruvbox-muted hover:text-gruvbox-red disabled:opacity-30 transition-colors text-xl leading-none flex-shrink-0"
+              >
+                ×
+              </button>
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+              {kriteria.map((k) => (
+                <div key={k.id} className="flex flex-col gap-1">
+                  <span className="text-[10px] font-mono text-gruvbox-muted truncate">
+                    {k.nama || k.id}
+                  </span>
+                  <Input
+                    type="number"
+                    min={1}
+                    value={a.nilai[k.id] ?? 1}
+                    onChange={(e) => updateNilai(a.id, k.id, Number(e.target.value))}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-3">
         <Button variant="outline" size="sm" onClick={addAlternatif} disabled={alternatif.length >= MAX_ALTERNATIF}>
           + Tambah Alternatif
         </Button>
-        <div className="flex gap-2">
+        <div className="flex justify-between sm:justify-end gap-2">
           <Button variant="ghost" onClick={goPrev}>← Kembali</Button>
           <Button onClick={handleNext}>Lanjut →</Button>
         </div>
