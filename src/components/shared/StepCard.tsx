@@ -20,7 +20,7 @@ export function StepCard({
       className={cn(
         'rounded-xl border border-gruvbox-border bg-gruvbox-surface p-4 sm:p-6 transition-all duration-300',
         isActive
-          ? 'border-l-4 border-l-gruvbox-orange shadow-[0_0_12px_rgba(230,160,80,0.15)]'
+          ? 'border-l-4 border-l-gruvbox-orange'
           : 'opacity-40 pointer-events-none',
         className,
       )}

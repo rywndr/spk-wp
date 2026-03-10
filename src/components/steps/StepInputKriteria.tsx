@@ -65,7 +65,7 @@ export function StepInputKriteria() {
 
       <div className="flex flex-col gap-2 mb-4">
         {/* header row — hidden on mobile, shown on sm+ */}
-        <div className="hidden sm:grid grid-cols-[1fr_56px_100px_24px] gap-2 px-1">
+        <div className="hidden sm:grid grid-cols-[1fr_56px_116px_24px] gap-2 px-1">
           <span className="text-xs font-mono text-gruvbox-muted">Nama Kriteria</span>
           <span className="text-xs font-mono text-gruvbox-muted">Bobot</span>
           <span className="text-xs font-mono text-gruvbox-muted">Tipe</span>
@@ -73,7 +73,7 @@ export function StepInputKriteria() {
         </div>
 
         {kriteria.map((k, i) => (
-          <div key={k.id} className="flex flex-col sm:grid sm:grid-cols-[1fr_56px_100px_24px] gap-2 sm:items-center bg-gruvbox-raised/30 sm:bg-transparent rounded-lg sm:rounded-none p-2 sm:p-0">
+          <div key={k.id} className="flex flex-col sm:grid sm:grid-cols-[1fr_56px_116px_24px] gap-2 sm:items-center bg-gruvbox-raised/30 sm:bg-transparent rounded-lg sm:rounded-none p-2 sm:p-0">
             {/* mobile-only label */}
             <span className="sm:hidden text-[10px] font-mono text-gruvbox-muted uppercase tracking-wider">
               Kriteria {i + 1}

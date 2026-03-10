@@ -11,12 +11,9 @@ export function Navbar() {
           <div className="flex items-center gap-3">
             {/* logo mark */}
             <div className="w-7 h-7 rounded-md bg-gruvbox-orange flex items-center justify-center">
-              <span className="font-mono text-xs font-bold text-gruvbox-bg">W</span>
+              <span className="font-mono text-xs font-bold text-gruvbox-bg">SPK</span>
             </div>
             <div>
-              <span className="font-mono text-gruvbox-text font-semibold text-sm tracking-tight">
-                SPK
-              </span>
               <span className="font-mono text-gruvbox-muted text-sm"> / </span>
               <span className="font-mono text-gruvbox-orange text-sm font-medium">
                 Weighted Product
@@ -25,9 +22,6 @@ export function Navbar() {
           </div>
 
           <div className="flex items-center gap-3">
-            <span className="hidden sm:block text-xs text-gruvbox-muted font-mono">
-              Sistem Pendukung Keputusan
-            </span>
             <Button variant="ghost" size="sm" onClick={reset}>
               Ulang
             </Button>
