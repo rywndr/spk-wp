@@ -10,13 +10,15 @@ export function Navbar() {
         <nav className="bg-gruvbox-surface border border-gruvbox-border rounded-2xl px-5 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             {/* logo mark */}
-            <div className="w-7 h-7 rounded-md bg-gruvbox-orange flex items-center justify-center">
-              <span className="font-mono text-xs font-bold text-gruvbox-bg">SPK</span>
-            </div>
             <div>
-              <span className="font-mono text-gruvbox-muted text-sm"> / </span>
+              <span className="font-mono text-gruvbox-muted text-sm">~</span>
+              <span className="font-mono text-gruvbox-muted text-sm">/</span>
               <span className="font-mono text-gruvbox-orange text-sm font-medium">
-                Weighted Product
+                SPK
+              </span>
+              <span className="font-mono text-gruvbox-muted text-sm">/</span>
+              <span className="font-mono text-gruvbox-orange text-sm font-medium">
+                Weighted-Product
               </span>
             </div>
           </div>
