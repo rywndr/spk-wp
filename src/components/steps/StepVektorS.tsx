@@ -1,0 +1,58 @@
+import { useWPM } from '@/hooks/useWPM'
+import { useStepProgress } from '@/hooks/useStepProgress'
+import { StepCard } from '@/components/shared/StepCard'
+import { FormulaBlock } from '@/components/shared/FormulaBlock'
+import { DataTable } from '@/components/shared/DataTable'
+import { Button } from '@/components/ui/Button'
+import { formatDecimal } from '@/utils/wpm'
+
+export function StepVektorS() {
+  const { kriteria, alternatif, bobotNormal, vektorS } = useWPM()
+  const { goNext, goPrev } = useStepProgress()
+
+  const headers = [
+    'Alternatif',
+    ...kriteria.map((k) => `${k.nama} (${k.tipe === 'benefit' ? '+Wj' : '-Wj'})`),
+    'Si',
+  ]
+
+  const rows = alternatif.map((alt) => {
+    const sVal = vektorS.find((s) => s.alternatifId === alt.id)?.nilai ?? 0
+    const termCells = kriteria.map((k) => {
+      const xij = alt.nilai[k.id] ?? 1
+      const wj = bobotNormal[k.id] ?? 0
+      const exp = k.tipe === 'benefit' ? wj : -wj
+      return (
+        <span key={k.id} className="font-mono text-xs text-gruvbox-muted">
+          {xij}
+          <sup className="text-gruvbox-orange">{formatDecimal(exp, 3)}</sup>
+        </span>
+      )
+    })
+    return [
+      alt.nama,
+      ...termCells,
+      <span key="si" className="text-gruvbox-yellow font-semibold font-mono">
+        {formatDecimal(sVal)}
+      </span>,
+    ]
+  })
+
+  return (
+    <StepCard
+      title="4. Hitung Vektor S"
+      description="Hitung nilai vektor S untuk setiap alternatif menggunakan perkalian berbobot."
+    >
+      <FormulaBlock className="mb-5">
+        {'Si = Π (Xij ^ Wj)    [benefit: +Wj, cost: -Wj]'}
+      </FormulaBlock>
+
+      <DataTable headers={headers} rows={rows} highlightCol={headers.length - 1} className="mb-5" />
+
+      <div className="flex justify-between">
+        <Button variant="ghost" onClick={goPrev}>← Kembali</Button>
+        <Button onClick={goNext}>Lanjut →</Button>
+      </div>
+    </StepCard>
+  )
+}

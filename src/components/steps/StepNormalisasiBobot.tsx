@@ -1,0 +1,50 @@
+import { useWPM } from '@/hooks/useWPM'
+import { useStepProgress } from '@/hooks/useStepProgress'
+import { StepCard } from '@/components/shared/StepCard'
+import { FormulaBlock } from '@/components/shared/FormulaBlock'
+import { DataTable } from '@/components/shared/DataTable'
+import { Badge } from '@/components/shared/Badge'
+import { Button } from '@/components/ui/Button'
+import { formatDecimal } from '@/utils/wpm'
+
+export function StepNormalisasiBobot() {
+  const { kriteria, bobotNormal } = useWPM()
+  const { goNext, goPrev } = useStepProgress()
+
+  const totalBobot = kriteria.reduce((s, k) => s + k.bobot, 0)
+
+  const headers = ['Kriteria', 'Tipe', 'Bobot (wj)', 'Wj = wj / Σwj']
+  const rows = kriteria.map((k) => [
+    k.nama,
+    <Badge key={k.id} variant={k.tipe}>{k.tipe}</Badge>,
+    String(k.bobot),
+    <span key={k.id} className="text-gruvbox-yellow font-mono">
+      {formatDecimal(bobotNormal[k.id] ?? 0)}
+    </span>,
+  ])
+
+  const sumRow = [
+    <span key="sum" className="text-gruvbox-muted">Σ</span>,
+    '',
+    <span key="tw" className="text-gruvbox-orange font-semibold">{totalBobot}</span>,
+    <span key="tw1" className="text-gruvbox-green font-semibold">1.0000</span>,
+  ]
+
+  return (
+    <StepCard
+      title="3. Normalisasi Bobot"
+      description="Hitung bobot ternormalisasi agar total bobot sama dengan 1."
+    >
+      <FormulaBlock className="mb-5">
+        {'Wj = wj / Σwj    (Σ semua bobot = ' + totalBobot + ')'}
+      </FormulaBlock>
+
+      <DataTable headers={headers} rows={[...rows, sumRow]} highlightCol={3} className="mb-5" />
+
+      <div className="flex justify-between">
+        <Button variant="ghost" onClick={goPrev}>← Kembali</Button>
+        <Button onClick={goNext}>Lanjut →</Button>
+      </div>
+    </StepCard>
+  )
+}
