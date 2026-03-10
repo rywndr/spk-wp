@@ -31,9 +31,9 @@ export function Navbar() {
               href={REPO_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-gruvbox-muted hover:text-gruvbox-text transition-colors"
+              className="group flex items-center gap-1.5 text-gruvbox-muted hover:text-gruvbox-text transition-colors"
             >
-              <img src={githubLogo} alt="GitHub" className="w-4 h-4 opacity-60 hover:opacity-100 transition-opacity" />
+              <img src={githubLogo} alt="GitHub" className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity" />
               <span className="hidden sm:inline font-mono text-xs">Source Code</span>
             </a>
             <Button variant="ghost" size="sm" onClick={reset}>
