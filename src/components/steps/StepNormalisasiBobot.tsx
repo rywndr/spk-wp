@@ -10,7 +10,8 @@ import { fmt3 } from '@/utils/wpm'
 const FORMULA_LEGEND = [
   { symbol: 'Wj', symbolLatex: 'W_j', description: 'bobot ternormalisasi kriteria j' },
   { symbol: 'wj', symbolLatex: 'w_j', description: 'bobot asli kriteria j' },
-  { symbol: 'Swj', symbolLatex: '\\sum w_j', description: 'jumlah semua bobot asli' },
+  { symbol: 'Swj', symbolLatex: '\\sum w_j', description: 'jumlah semua bobot awal dari semua kriteria' },
+
 ]
 
 export function StepNormalisasiBobot() {

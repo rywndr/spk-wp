@@ -7,9 +7,9 @@ import { Button } from '@/components/ui/Button'
 import { fmt3, fmtFinal } from '@/utils/wpm'
 
 const FORMULA_LEGEND = [
-  { symbol: 'Si', symbolLatex: 'S_i', description: 'nilai vektor S alternatif i' },
+  { symbol: 'Si', symbolLatex: 'S_i', description: 'nilai preferensi sementara untuk setiap alternatif' },
   { symbol: 'Prod', symbolLatex: '\\prod', description: 'perkalian berurutan semua kriteria j' },
-  { symbol: 'Xij', symbolLatex: 'X_{ij}', description: 'nilai alternatif i pada kriteria j' },
+  { symbol: 'Xij', symbolLatex: 'X_{ij}', description: 'nilai alternatif yang dimiliki kriteria' },
   { symbol: 'Wj', symbolLatex: 'W_j', description: 'bobot ternormalisasi kriteria j' },
   { symbol: '+Wj', symbolLatex: '+W_j', description: 'eksponen positif untuk kriteria benefit' },
   { symbol: '-Wj', symbolLatex: '-W_j', description: 'eksponen negatif untuk kriteria cost' },
@@ -53,7 +53,7 @@ export function StepVektorS() {
       description="Hitung nilai vektor S untuk setiap alternatif menggunakan perkalian berbobot."
     >
       <FormulaBlock
-        latex="S_i = \prod_{j=1}^{n} X_{ij}^{\,W_j} \quad \text{(benefit: } {+W_j} \text{, cost: } {-W_j}\text{)}"
+        latex="S_i = \prod \text{(}X_{ij}^{\,W_j}\text{)} \quad \text{(benefit: } {+W_j} \text{, cost: } {-W_j}\text{)}"
         legend={FORMULA_LEGEND}
         className="mb-5"
       />

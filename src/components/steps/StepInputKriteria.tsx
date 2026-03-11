@@ -18,7 +18,7 @@ const TIPE_OPTIONS = [
 const FORMULA_LEGEND = [
   { symbol: 'Wj', symbolLatex: 'W_j', description: 'bobot ternormalisasi kriteria j' },
   { symbol: 'wj', symbolLatex: 'w_j', description: 'bobot asli kriteria j' },
-  { symbol: 'Swj', symbolLatex: '\\sum w_j', description: 'jumlah semua bobot' },
+  { symbol: 'Swj', symbolLatex: '\\sum w_j', description: 'jumlah semua bobot awal dari semua kriteria' },
 ]
 
 export function StepInputKriteria() {
@@ -58,7 +58,7 @@ export function StepInputKriteria() {
       description="Tentukan kriteria penilaian, bobot kepentingan, dan tipe kriteria."
     >
       <FormulaBlock
-        latex="W_j = \dfrac{w_j}{\sum_{j=1}^{n} w_j}"
+        latex="W_j = \dfrac{w_j}{\sum w_j}"
         legend={FORMULA_LEGEND}
         className="mb-5"
       />

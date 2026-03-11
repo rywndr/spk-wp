@@ -7,9 +7,9 @@ import { Button } from '@/components/ui/Button'
 import { fmt3, fmtFinal } from '@/utils/wpm'
 
 const FORMULA_LEGEND = [
-  { symbol: 'Vi', symbolLatex: 'V_i', description: 'nilai preferensi relatif alternatif i' },
+  { symbol: 'Vi', symbolLatex: 'V_i', description: 'nilai preferensi akhir untuk menentukan ranking alternatif' },
   { symbol: 'Si', symbolLatex: 'S_i', description: 'nilai vektor S alternatif i' },
-  { symbol: 'SSi', symbolLatex: '\\sum S_i', description: 'jumlah seluruh nilai vektor S' },
+  { symbol: 'SSi', symbolLatex: '\\sum S_i', description: 'jumlah seluruh nilai S dari semua alternatif' },
 ]
 
 export function StepVektorV() {
@@ -38,7 +38,7 @@ export function StepVektorV() {
       description="Hitung nilai preferensi relatif setiap alternatif terhadap total."
     >
       <FormulaBlock
-        latex={`V_i = \\dfrac{S_i}{\\sum_{i=1}^{m} S_i} \\quad (\\textstyle\\sum S_i = ${fmt3(totalS)})`}
+        latex={`V_i = \\dfrac{S_i}{\\sum S_i} \\quad (\\textstyle\\sum S_i = ${fmt3(totalS)})`}
         legend={FORMULA_LEGEND}
         className="mb-5"
       />
