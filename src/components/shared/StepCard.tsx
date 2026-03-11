@@ -18,17 +18,29 @@ export function StepCard({
   return (
     <div
       className={cn(
-        'rounded-xl border border-gruvbox-border bg-gruvbox-surface p-4 sm:p-6 transition-all duration-300',
+        'relative border-2 bg-gruvbox-surface p-4 sm:p-6 transition-all duration-150',
         isActive
-          ? 'border-l-4 border-l-gruvbox-orange'
-          : 'opacity-40 pointer-events-none',
+          ? 'border-gruvbox-orange [box-shadow:4px_4px_0px_0px_#e6a050]'
+          : 'border-gruvbox-border [box-shadow:4px_4px_0px_0px_#504945] opacity-40 pointer-events-none',
         className,
       )}
     >
+      {isActive && (
+        <div className="absolute left-0 top-0 bottom-0 w-1 bg-gruvbox-orange" />
+      )}
       <div className="mb-4">
-        <h2 className="text-gruvbox-orange font-semibold text-lg leading-tight">{title}</h2>
+        <h2
+          className={cn(
+            'font-black text-lg uppercase tracking-wide leading-tight',
+            isActive
+              ? 'text-gruvbox-orange [text-shadow:2px_2px_0px_#3c3836]'
+              : 'text-gruvbox-muted',
+          )}
+        >
+          {title}
+        </h2>
         {description && (
-          <p className="text-gruvbox-muted text-sm mt-1">{description}</p>
+          <p className="text-gruvbox-muted text-sm mt-1 font-medium">{description}</p>
         )}
       </div>
       {children}
