@@ -14,7 +14,13 @@ export function Navbar() {
           <div className="flex items-center gap-3">
             {/* logo mark */}
             <div>
-              <span className="font-mono text-gruvbox-muted text-sm">~</span>
+              <span className="font-mono text-gruvbox-muted text-sm">
+                <a 
+                href="https://haikhalroy.me" 
+                className="hover:text-gruvbox-orange transition-colors">
+                  [~]
+                </a>
+              </span>
               <span className="font-mono text-gruvbox-muted text-sm">/</span>
               <span className="font-mono text-gruvbox-orange text-sm font-medium">
                 SPK
