@@ -15,7 +15,7 @@ export function StepHasil() {
   const winnerNama = alternatif.find((a) => a.id === winner?.alternatifId)?.nama ?? '-'
 
   return (
-    <StepCard title="6. Hasil Akhir" description="Peringkat alternatif berdasarkan nilai Vi.">
+    <StepCard title="6. Perangkingan" description="Perangkingan alternatif berdasarkan nilai Vi.">
       {/* winner highlight */}
       <div className="mb-6 p-4 rounded-xl bg-gruvbox-raised border border-gruvbox-orange/40 shadow-[0_0_20px_rgba(230,160,80,0.1)]">
         <p className="text-xs font-mono text-gruvbox-muted mb-1 uppercase tracking-widest">

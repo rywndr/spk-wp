@@ -33,7 +33,7 @@ export const STEPS: StepDefinition[] = [
   },
   {
     id: 'hasil',
-    label: 'Hasil Akhir',
+    label: 'Perangkingan',
     description: 'Peringkat alternatif terbaik',
     index: 5,
   },
